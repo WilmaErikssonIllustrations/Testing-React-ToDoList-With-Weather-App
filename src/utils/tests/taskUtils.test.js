@@ -12,19 +12,27 @@ describe("taskUtils", () => {
       //arrange
       const Input = "";
       const expectedError = "Skriv en uppgift innan du fortsätter.";
-      //assert
-      const result = validateTitle(Input);
       //act
+      const result = validateTitle(Input);
+      //assert
       expect(result).toBe(expectedError);
     });
     test("error if title is empty and contains spaces only", () => {
       //arrange
       const Input = "   ";
       const expectedError = "Skriv en uppgift innan du fortsätter.";
-      //assert
-      const result = validateTitle(Input);
       //act
+      const result = validateTitle(Input);
+      //assert
       expect(result).toBe(expectedError);
+    });
+    test("return empty string if title is correct", () => {
+      //arrange
+      const Input = "tala med Olle om försäkringen";
+      //act
+      const result = validateTitle(Input);
+      //assert
+      expect(result).toBe("");
     });
   });
 });
