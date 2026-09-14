@@ -74,6 +74,23 @@ describe("taskUtils", () => {
       expect(result).toHaveLength(1);
       expect(result[0].completed).toBe(false);
     });
+    test("returns empty array when filtering an empty task list", () => {
+      // arrange
+      const mockTasks = [];
+      const selectedFilter = "active";
+      // act
+      const result = filterTasks(mockTasks, selectedFilter);
+      // assert
+      expect(result).toEqual([]);
+    });
+    test("returns 0 active tasks when list is empty", () => {
+      // arrange
+      const mockTasks = [];
+      // act
+      const activeCount = countActiveTasks(mockTasks);
+      // assert
+      expect(activeCount).toBe(0);
+    });
   });
   describe("task count functions", () => {
     test("count correct number of active tasks", () => {
