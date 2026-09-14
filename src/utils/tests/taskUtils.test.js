@@ -75,4 +75,30 @@ describe("taskUtils", () => {
       expect(result[0].completed).toBe(false);
     });
   });
+  describe("task count functions", () => {
+    test("count correct number of active tasks", () => {
+      //arrange
+      const mockTasks = [
+        { id: 1, completed: false },
+        { id: 2, completed: false },
+        { id: 3, completed: true },
+      ];
+      //act
+      const activeCount = countActiveTasks(mockTasks);
+      //assert
+      expect(activeCount).toBe(2);
+    });
+    test("count correct number of completed tasks", () => {
+      //arrange
+      const mockTasks = [
+        { id: 1, completed: false },
+        { id: 2, completed: false },
+        { id: 3, completed: true },
+      ];
+      //act
+      const completedCount = countCompletedTasks(mockTasks);
+      //assert
+      expect(completedCount).toBe(1);
+    });
+  });
 });
