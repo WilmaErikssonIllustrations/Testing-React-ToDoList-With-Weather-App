@@ -18,4 +18,34 @@ describe("TodoForm", () => {
     expect(input).toBeInTheDocument();
     expect(button).toBeInTheDocument();
   });
+  test("user can write task in input field", async () => {
+    // ARRANGE
+    const user = userEvent.setup();
+    render(<TodoForm />);
+
+    const input = screen.getByLabelText("Ny uppgift");
+
+    // ACT
+    await user.type(input, "Deklarera");
+
+    // ASSERT
+    expect(input).toHaveValue("Deklarera");
+  });
+  test("Validation error if user input is empty", async () => {
+    // ARRANGE
+    const user = userEvent.setup();
+    render(<TodoForm />);
+
+    const button = screen.getByRole("button", { name: "Lägg till" });
+
+    // ACT
+    await user.click(button);
+
+    // ASSERT
+    const errorMessage = screen.getByRole("alert");
+    expect(errorMessage).toBeInTheDocument();
+    expect(errorMessage).toHaveTextContent(
+      "Skriv en uppgift innan du fortsätter.",
+    );
+  });
 });
