@@ -35,18 +35,44 @@ describe("taskUtils", () => {
       expect(result).toBe("");
     });
   });
-});
-describe("filterTasks", () => {
-  test("return all tasks when filter after all has been clicked", () => {
-    //arrange
-    const mockTasks = [
-      { id: 1, title: "Aktiv uppgift", completed: false },
-      { id: 2, title: "Klar uppgift", completed: true },
-    ];
-    const selectedFilter = "all";
-    //act
-    const result = filterTasks(mockTasks, selectedFilter);
-    //assert
-    expect(result).toHaveLength(2);
+  describe("filterTasks", () => {
+    test("return all tasks when filter after all has been clicked", () => {
+      //arrange
+      const mockTasks = [
+        { id: 1, title: "Aktiv uppgift", completed: false },
+        { id: 2, title: "Klar uppgift", completed: true },
+      ];
+      const selectedFilter = "all";
+      //act
+      const result = filterTasks(mockTasks, selectedFilter);
+      //assert
+      expect(result).toHaveLength(2);
+    });
+    test("return completed tasks when filter after completed has been clicked", () => {
+      //arrange
+      const mockTasks = [
+        { id: 1, title: "Aktiv uppgift", completed: false },
+        { id: 2, title: "Klar uppgift", completed: true },
+      ];
+      const selectedFilter = "completed";
+      //act
+      const result = filterTasks(mockTasks, selectedFilter);
+      //assert
+      expect(result).toHaveLength(1);
+      expect(result[0].completed).toBe(true);
+    });
+    test("return active tasks when filter after active has been clicked", () => {
+      //arrange
+      const mockTasks = [
+        { id: 1, title: "Aktiv uppgift", completed: false },
+        { id: 2, title: "Klar uppgift", completed: true },
+      ];
+      const selectedFilter = "active";
+      //act
+      const result = filterTasks(mockTasks, selectedFilter);
+      //assert
+      expect(result).toHaveLength(1);
+      expect(result[0].completed).toBe(false);
+    });
   });
 });
