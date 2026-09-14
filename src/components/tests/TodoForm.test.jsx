@@ -3,4 +3,17 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import TodoForm from "../TodoForm";
 
-describe("", () => {});
+describe("TodoForm", () => {
+  test("renders input field and submit button", () => {
+    // ARRANGE
+    render(<TodoForm />);
+
+    // ACT
+    const input = screen.getByLabelText("Ny uppgift");
+    const button = screen.getByRole("button", { name: "Lägg till" });
+
+    // ASSERT
+    expect(input).toBeInTheDocument();
+    expect(button).toBeInTheDocument();
+  });
+});
