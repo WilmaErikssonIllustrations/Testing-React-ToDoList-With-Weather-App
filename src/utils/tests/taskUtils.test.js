@@ -36,3 +36,17 @@ describe("taskUtils", () => {
     });
   });
 });
+describe("filterTasks", () => {
+  test("return all tasks when filter after all has been clicked", () => {
+    //arrange
+    const mockTasks = [
+      { id: 1, title: "Aktiv uppgift", completed: false },
+      { id: 2, title: "Klar uppgift", completed: true },
+    ];
+    const selectedFilter = "all";
+    //act
+    const result = filterTasks(mockTasks, selectedFilter);
+    //assert
+    expect(result).toHaveLength(2);
+  });
+});
