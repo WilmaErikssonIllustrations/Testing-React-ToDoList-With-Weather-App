@@ -9,10 +9,12 @@ describe("TodoForm", () => {
     render(<TodoForm />);
 
     // ACT
+    const label = screen.getByText("Ny uppgift");
     const input = screen.getByLabelText("Ny uppgift");
     const button = screen.getByRole("button", { name: "Lägg till" });
 
     // ASSERT
+    expect(label).toBeInTheDocument();
     expect(input).toBeInTheDocument();
     expect(button).toBeInTheDocument();
   });
