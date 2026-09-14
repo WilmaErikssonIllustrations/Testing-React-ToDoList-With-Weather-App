@@ -8,9 +8,23 @@ import {
 
 describe("taskUtils", () => {
   describe("validateTitle", () => {
-    test("error if title is empty");
-    //arrange
-    //act
-    //assert
+    test("error if title is empty string", () => {
+      //arrange
+      const Input = "";
+      const expectedError = "Skriv en uppgift innan du fortsätter.";
+      //assert
+      const result = validateTitle(Input);
+      //act
+      expect(result).toBe(expectedError);
+    });
+    test("error if title is empty and contains spaces only", () => {
+      //arrange
+      const Input = "   ";
+      const expectedError = "Skriv en uppgift innan du fortsätter.";
+      //assert
+      const result = validateTitle(Input);
+      //act
+      expect(result).toBe(expectedError);
+    });
   });
 });
