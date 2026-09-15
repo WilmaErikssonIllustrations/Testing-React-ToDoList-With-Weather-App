@@ -1,2 +1,0 @@
-Testfall template för minst 5 test
-Väder - integrations test
