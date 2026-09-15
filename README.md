@@ -1,35 +1,31 @@
-# React Todo-app
+# Vädret i Stockholm & React ToDo App
 
-En enkel Todo-app med React, Vite och JSON Server. Appen innehåller inga tester eller testverktyg.
-
-## Funktioner
-
-- Hämta uppgifter från ett lokalt API
-- Lägga till uppgifter
-- Markera uppgifter som slutförda
-- Ta bort uppgifter
-- Filtrera mellan alla, aktiva och slutförda uppgifter
-- Visa antal uppgifter
-- Visa loading-, error- och empty-lägen
-- Växla knapptext med en enkel A/B-variant
-- Visa aktuellt väder för Stockholm
-- Visa ett enkelt klädtips utifrån temperatur och väder
+En enkel Todo-app med React, Vite och JSON Server. Innehåller enhets-, komponent- och integrationstester som använder Vitest, React Testing Library och MSW.
 
 ## Starta appen
 
-Installera först paketen:
+Följ dessa steg för att köra projektet lokalt:
+
+1. Klona repositoryt:
+
+```bash
+   git clone <ditt-repo-url>
+   cd React-ToDo-With-Weather-App-main
+```
+
+2. Installera först paketen:
 
 ```bash
 npm install
 ```
 
-Starta JSON Server i den första terminalen:
+3. Starta JSON Server i den första terminalen:
 
 ```bash
 npm run server
 ```
 
-Starta React-appen i en andra terminal:
+4. Starta React-appen i en andra terminal:
 
 ```bash
 npm run dev
@@ -41,15 +37,33 @@ npm run dev
 http://localhost:5173
 ```
 
-## A/B-variant
+## Testkommandon
 
-Kopiera `.env.example` och döp kopian till `.env`.
+Projektet använder Vitest och React Testing Library för enhets- och komponenttester, samt MSW (Mock Service Worker) för att mocka externa API-anrop i integrationstesterna.
 
-```env
-VITE_BUTTON_VARIANT=A
+- Kör testerna i watch-mode:
+
+```bash
+  npm test
 ```
 
-- `A` visar **Lägg till**.
-- `B` visar **Skapa uppgift**.
+- Kör testerna en enda gång (CI/CD-läge):
 
-Starta om React-appen efter att du har ändrat `.env`.
+```bash
+  npx vitest run
+```
+
+## Sammanfattning av testresultatet
+
+Testerna täcker in logik, komponenter och externa API-anrop (totalt 16 godkända tester):
+
+- Task Utils (taskUtils.test.js): 10 enhetstester som verifierar logiken för att hantera och manipulera tasks.
+- Todo Form (TodoForm.test.jsx): Komponenttester som säkerställer att formuläret hanterar inmatningar korrekt.
+- Weather API med MSW (weatherApi.mock.test.js): Integrationstester som simulerar Open-Meteo API:et och verifierar tre scenarier:
+  - Att väderdata hämtas och returneras som numeriska värden.
+  - Att applikationen hanterar serverfel (HTTP 500) korrekt.
+  - Att applikationen hanterar nätverksfel korrekt.
+
+## Externa länkar
+
+- Open-Meteos dokumentation: [https://open-meteo.com/en/docs](https://open-meteo.com/en/docs)
